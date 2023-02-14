@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 node:14.15.4
+FROM --platform=linux/x86_64 node:18.5.0-slim
 
 RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
 
@@ -10,11 +10,9 @@ RUN apt-get update \
 RUN locale-gen ja_JP.UTF-8
 RUN localedef -f UTF-8 -i ja_JP ja_JP
 
-ENV LANG ja_JP.UTF-8
-ENV TZ Asia/Tokyo
+ENV LANG=ja_JP.UTF-8
+ENV TZ=Asia/Tokyo
 
-RUN yarn global add yo@~3.0.0 generator-hubot coffeescript@~1.12.7
-
-RUN useradd hubot-todo -m
-USER hubot-todo
-WORKDIR /home/hubot-todo
+RUN useradd bot-todo -m
+USER bot-todo
+WORKDIR /bot-todo
