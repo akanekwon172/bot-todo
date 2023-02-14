@@ -1,9 +1,7 @@
-FROM --platform=linux/x86_64 node:18.5.0-slim
-
-RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
+FROM --platform=linux/x86_64 node:18.7.0-slim
 
 RUN apt-get update \
-&& apt-get install --no-install-recommends -y locales \
+&& apt-get install --no-install-recommends -y locales git procps \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 

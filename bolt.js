@@ -38,11 +38,21 @@ message('del', async ({ context, say }) => {
 });
 
 read('list', async ({ context, say }) => {
-  await say(todo.list().join('\n'));
+  const list = todo.list();
+  if (list.length === 0) {
+    await say('(TODOはありません)');
+  } else {
+    await say(list.join('\n'));
+  }
 });
 
 read('donelist', async ({ context, say }) => {
-  await say(todo.donelist().join('\n'));
+  const list = todo.list();
+  if (list.length === 0) {
+    await say('(TODOはありません)');
+  } else {
+    await say(list.join('\n'));
+  }
 });
 
 async function message(pattern, fn) {
